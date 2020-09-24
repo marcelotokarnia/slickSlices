@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => <div>Beers</div>
+const BeersPage = () => <p>Beers</p>
+
+export default BeersPage

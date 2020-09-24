@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => <div>Order page</div>
+const OrderPage = () => <div>Order page</div>
+
+export default OrderPage

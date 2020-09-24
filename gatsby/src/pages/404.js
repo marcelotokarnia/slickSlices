@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => <div>Hey, That page doesn't exist</div>
+const Four04Page = () => <div>Hey, That page doesn't exist</div>
+
+export default Four04Page

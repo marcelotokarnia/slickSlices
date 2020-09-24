@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => <div>Pizza Page</div>
+const PizzaPage = () => <p>Pizza Page</p>
+
+export default PizzaPage

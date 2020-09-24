@@ -1,3 +1,9 @@
 import React from 'react'
 
-export default () => <div>Slice Masters</div>
+const SliceMastersPage = () => (
+  <div>
+    <p>Slice Masters</p>
+  </div>
+)
+
+export default SliceMastersPage

@@ -14,14 +14,6 @@
     "netlify": "netlify dev",
     "prebuild": "netlify-lambda install"
   },
-  "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ],
-    "rules": {
-      "react/prop-types": 0
-    }
-  },
   "dependencies": {
     "babel-plugin-styled-components": "^1.11.1",
     "dotenv": "^8.2.0",

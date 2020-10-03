@@ -7,9 +7,10 @@ const PizzaPage = ({
   data: {
     pizzas: { nodes: pizzas },
   },
+  pageContext: { topping },
 }) => (
   <>
-    <ToppingsFilter />
+    <ToppingsFilter activeTopping={topping} />
     <PizzaList pizzas={pizzas} />
   </>
 )
@@ -17,8 +18,10 @@ const PizzaPage = ({
 export default PizzaPage
 
 export const query = graphql`
-  query PizzaQuery {
-    pizzas: allSanityPizza {
+  query PizzaQuery($topping: String) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { name: { eq: $topping } } } }
+    ) {
       nodes {
         name
         id

@@ -19,7 +19,7 @@ const ToppingsStyles = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    .active {
+    &[aria-current='page'] {
       background: var(--yellow);
     }
   }
@@ -30,20 +30,18 @@ const countPizzasInToppings = ({ toppings, pizzas }) =>
     pizzas
       .flatMap(({ toppings: pizzaToppings }) => pizzaToppings)
       .reduce(
-        (acc, { name, id }) => {
-          console.log(acc)
+        (acc, { id }) => {
           acc[id].count += 1
           return acc
         },
         toppings.reduce((accT, { name, id }) => {
           accT[id] = { count: 0, name, id }
-          console.log(accT)
           return accT
         }, {})
       )
   ).sort(({ count: countA }, { count: countB }) => countB - countA)
 
-const ToppingsFilter = () => {
+const ToppingsFilter = ({ activeTopping }) => {
   const {
     toppings: { nodes: toppings },
     pizzas: { nodes: pizzas },
@@ -70,6 +68,10 @@ const ToppingsFilter = () => {
 
   return (
     <ToppingsStyles>
+      <Link to="/pizzas">
+        <span className="name">All</span>
+        <span className="count">{pizzas.length}</span>
+      </Link>
       {toppingsWithCounts.map(({ name, count, id }) => (
         <Link to={`/topping/${name}`} key={id}>
           <span className="name">{name}</span>

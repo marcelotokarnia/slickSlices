@@ -70,7 +70,7 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link to="/slicemasters">SliceMasters Menu</Link>
+        <Link to="/slicemasters">SliceMasters</Link>
       </li>
       <li>
         <Link to="/order">Order Ahead!</Link>

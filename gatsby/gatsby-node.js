@@ -1,6 +1,55 @@
 import path from 'path'
 import fetch from 'isomorphic-fetch'
 
+const turnSliceMastersIntoPages = async ({ graphql, actions }) => {
+  const slicemastersTemplate = path.resolve('./src/pages/slicemasters.js')
+  const slicemasterTemplate = path.resolve('./src/templates/Slicemaster.js')
+  const {
+    data: {
+      slicemasters: { totalCount, nodes: slicemasters },
+    },
+  } = await graphql(`
+    query {
+      slicemasters: allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `)
+
+  slicemasters.forEach(({ slug: { current: slug } }) => {
+    actions.createPage({
+      path: `/slicemasters/${slug}`,
+      component: slicemasterTemplate,
+      context: {
+        slug,
+      },
+    })
+  })
+
+  const pageSize = +process.env.GATSBY_PAGE_SIZE
+  const pageCount = Math.ceil(totalCount / pageSize)
+  // Array.from({length: 10}, (_, i) => i + 1) range without the zero
+  const range = [...Array(pageCount).keys()]
+  range.forEach(i => {
+    actions.createPage({
+      path: `/slicemasters/${i + 1}`,
+      component: slicemastersTemplate,
+      context: {
+        skip: i * pageSize,
+        currentPage: i + 1,
+        pageSize,
+      },
+    })
+  })
+}
+
 const turnToppingsIntoPages = async ({ graphql, actions }) => {
   const toppingTemplate = path.resolve('./src/pages/pizzas.js')
   const {
@@ -91,6 +140,6 @@ export const createPages = async params => {
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
-    // turnSliceMastersIntoPages(params)
+    turnSliceMastersIntoPages(params),
   ])
 }

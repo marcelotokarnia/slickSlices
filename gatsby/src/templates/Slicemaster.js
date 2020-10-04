@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import SEO from '../components/SEO'
 
 const SlicemasterPage = ({
   data: {
@@ -13,13 +14,16 @@ const SlicemasterPage = ({
     },
   },
 }) => (
-  <div className="center">
-    <Img fluid={fluid} />
-    <h2>
-      <span className="mark">{name}</span>
-      <p>{description}</p>
-    </h2>
-  </div>
+  <>
+    <SEO title={name} image={fluid.src} />
+    <div className="center">
+      <Img fluid={fluid} />
+      <h2>
+        <span className="mark">{name}</span>
+        <p>{description}</p>
+      </h2>
+    </div>
+  </>
 )
 
 export default SlicemasterPage

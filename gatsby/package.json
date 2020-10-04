@@ -26,6 +26,7 @@
     "netlify-cli": "^2.62.0",
     "netlify-lambda": "^2.0.1",
     "normalize.css": "^8.0.1",
+    "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",

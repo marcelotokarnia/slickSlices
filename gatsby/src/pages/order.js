@@ -1,10 +1,18 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import { indexBy, prop } from 'ramda'
 import SEO from '../components/SEO'
-import { useForm, calculatePizzaPrice, formatMoney } from '../utils'
+import {
+  useForm,
+  calculatePizzaPrice,
+  formatMoney,
+  usePizza,
+  calculateOrderTotal,
+} from '../utils'
 import OrderStyles from '../styles/OrderStyles'
 import MenuItemStyles from '../styles/MenuItemStyles'
+import PizzaOrder from '../components/PizzaOrder'
 
 const OrderPage = ({
   data: {
@@ -15,6 +23,12 @@ const OrderPage = ({
     name: '',
     email: '',
   })
+  const { order, addToOrder, removeFromOrder } = usePizza({
+    pizzas,
+    inputs: values,
+  })
+  const pizzasMap = indexBy(prop('id'))(pizzas)
+
   return (
     <>
       <SEO title="Order a Pizza!" />
@@ -47,7 +61,16 @@ const OrderPage = ({
               </div>
               <div>
                 {['S', 'M', 'L'].map(size => (
-                  <button type="button" key={size}>
+                  <button
+                    type="button"
+                    key={size}
+                    onClick={() =>
+                      addToOrder({
+                        id,
+                        size,
+                      })
+                    }
+                  >
                     {size} {formatMoney(calculatePizzaPrice({ price, size }))}
                   </button>
                 ))}
@@ -57,6 +80,18 @@ const OrderPage = ({
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <PizzaOrder
+            order={order}
+            removeFromOrder={removeFromOrder}
+            pizzasMap={pizzasMap}
+          />
+        </fieldset>
+        <fieldset>
+          <h3>
+            Your total is{' '}
+            {formatMoney(calculateOrderTotal({ order, pizzasMap }))}
+          </h3>
+          <button type="submit"> Order ahead</button>
         </fieldset>
       </OrderStyles>
     </>

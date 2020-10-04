@@ -1,4 +1,4 @@
-import { calculatePizzaPrice } from '.'
+import calculatePizzaPrice from './calculatePizzaPrice'
 
 export default ({ order, pizzasMap }) =>
   order.reduce(

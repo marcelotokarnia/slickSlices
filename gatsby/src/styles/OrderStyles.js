@@ -9,6 +9,8 @@ const OrderStyles = styled.form`
     max-height: 600px;
     overflow: auto;
     display: grid;
+    gap: 1rem;
+    align-content: start;
     &.order,
     &.menu {
       grid-column: span 1;

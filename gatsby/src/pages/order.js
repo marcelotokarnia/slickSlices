@@ -19,15 +19,27 @@ const OrderPage = ({
     pizzas: { nodes: pizzas },
   },
 }) => {
+  const pizzasMap = indexBy(prop('id'))(pizzas)
   const { values, updateValue } = useForm({
     name: '',
     email: '',
   })
-  const { order, addToOrder, removeFromOrder } = usePizza({
-    pizzas,
-    inputs: values,
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = usePizza({
+    pizzasMap,
+    values,
   })
-  const pizzasMap = indexBy(prop('id'))(pizzas)
+
+  if (message) {
+    return <p>{message}</p>
+  }
 
   return (
     <>
@@ -38,6 +50,7 @@ const OrderPage = ({
           <label htmlFor="name">Name</label>
           <input
             type="text"
+            name="name"
             id="name"
             value={values.name}
             onChange={updateValue}
@@ -46,6 +59,7 @@ const OrderPage = ({
           <label htmlFor="email">Email</label>
           <input
             type="email"
+            name="email"
             id="email"
             onChange={updateValue}
             value={values.email}
@@ -91,7 +105,10 @@ const OrderPage = ({
             Your total is{' '}
             {formatMoney(calculateOrderTotal({ order, pizzasMap }))}
           </h3>
-          <button type="submit"> Order ahead</button>
+          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <button type="submit" disabled={loading} onClick={submitOrder}>
+            {loading ? 'Placing Order...' : 'Order ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>

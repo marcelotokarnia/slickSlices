@@ -1,5 +1,6 @@
 export { default as formatMoney } from './formatMoney'
 export { default as calculatePizzaPrice } from './calculatePizzaPrice'
 export { default as useForm } from './useForm'
-export { default as usePizza } from './usePizza'
 export { default as calculateOrderTotal } from './calculateOrderTotal'
+export { default as usePizza } from './usePizza'
+export { default as attachNamesAndPrices } from './attachNamesAndPrices'

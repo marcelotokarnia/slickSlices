@@ -25,6 +25,7 @@ export default ({ pizzasMap, values }) => {
       total: formatMoney(calculateOrderTotal({ order, pizzasMap })),
       name: values.name,
       email: values.email,
+      mapleSyrup: values.mapleSyrup,
     }
     const res = await fetch(`${SERVERLESS_BASE}/placeOrder`, {
       method: 'POST',

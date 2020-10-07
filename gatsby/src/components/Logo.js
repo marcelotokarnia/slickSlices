@@ -56,8 +56,9 @@ const LogoStyles = styled.div`
     --translateX: 0;
     --translateY: 0;
     --rotateX: 0deg;
-    transform: scale(var(--scale)) rotate(var(--rotate)) translateX(var(--translateX))
-      translateY(var(--translateY)) rotateX(var(--rotateX));
+    transform: scale(var(--scale)) rotate(var(--rotate))
+      translateX(var(--translateX)) translateY(var(--translateY))
+      rotateX(var(--rotateX));
     display: inline-block;
     line-height: 1;
     transition: transform 0.3s;

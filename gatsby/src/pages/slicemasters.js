@@ -55,6 +55,7 @@ const SliceMastersPage = ({
     <SliceMasterGrid>
       {slicemasters.map(
         ({
+          id,
           slug: { current: slug },
           name,
           image: {
@@ -62,7 +63,7 @@ const SliceMastersPage = ({
           },
           description,
         }) => (
-          <SliceMasterStyles>
+          <SliceMasterStyles key={id}>
             <Link to={`/slicemasters/${slug}`}>
               <h2>
                 <span className="mark">{name}</span>

@@ -1,5 +1,7 @@
 haters/
 
+dist/
+
 *.sketch
 *.fig
 course-layout.md

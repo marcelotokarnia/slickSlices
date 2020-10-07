@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
-import { formatMoney, attachNamesAndPrices } from '.'
+import formatMoney from './formatMoney'
+import attachNamesAndPrices from './attachNamesAndPrices'
 import OrderContext from '../components/OrderContext'
 import calculateOrderTotal from './calculateOrderTotal'
 import { SERVERLESS_BASE } from '../constants'

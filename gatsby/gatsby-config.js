@@ -6,7 +6,7 @@ export default {
   // pathPrefix: '/pizza', then run gatsby build --prefix-paths to build it to /pizza path
   siteMetadata: {
     title: 'Slicks Slices',
-    siteUrl: 'https://pizzas.tokks.tech',
+    siteUrl: 'https://pizzas.tokarnia.tech',
     description: 'The best pizza place',
     twitter: '@slickSlices',
   },
